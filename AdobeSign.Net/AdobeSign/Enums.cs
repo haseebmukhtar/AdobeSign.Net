@@ -10,6 +10,7 @@ namespace AdobeSignNet.AdobeSign
     {
     }
 
+    //Enums to be used
 
 
     public enum Result
