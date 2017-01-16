@@ -16,7 +16,6 @@ namespace AdobeSignNet
 {
     public class RestAPI
     {   
-
         private string APIURL = string.Empty;
         private string AccessToken = string.Empty;
         private string ClientID = string.Empty;
