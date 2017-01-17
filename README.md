@@ -54,7 +54,7 @@ Usage to send document for signing
                     recipientSetInfo.recipientSetRole = AdobeSignNet.AdobeSign.RecipientRoleEnum.SIGNER;
                     recipientSetInfo.signingOrder = 1;
 
-                    //RecipientSetMemberInfo
+                    //RecipientSetMemberInfohttps://www.adobe.io/apis/documentcloud/sign/docs/step-by-step-guide/get-the-access-token.html
                     AdobeSignNet.AdobeSign.RecipientSetMemberInfo setMemberInfo = new AdobeSignNet.AdobeSign.RecipientSetMemberInfo();
                     setMemberInfo.email = recipientEmail;
 
@@ -77,3 +77,7 @@ Usage to send document for signing
         }
     
 Version History 
+
+How to get the access token.
+https://www.adobe.io/apis/documentcloud/sign/docs/step-by-step-guide/get-the-access-token.html
+
