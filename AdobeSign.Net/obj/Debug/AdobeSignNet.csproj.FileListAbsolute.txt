@@ -1,5 +1,0 @@
-c:\users\hmukhtar\documents\visual studio 2015\Projects\AdobeSign.Net\AdobeSign.Net\bin\Debug\AdobeSignNet.dll
-c:\users\hmukhtar\documents\visual studio 2015\Projects\AdobeSign.Net\AdobeSign.Net\bin\Debug\AdobeSignNet.pdb
-c:\users\hmukhtar\documents\visual studio 2015\Projects\AdobeSign.Net\AdobeSign.Net\obj\Debug\AdobeSignNet.dll
-c:\users\hmukhtar\documents\visual studio 2015\Projects\AdobeSign.Net\AdobeSign.Net\obj\Debug\AdobeSignNet.pdb
-c:\users\hmukhtar\documents\visual studio 2015\Projects\AdobeSign.Net\AdobeSign.Net\obj\Debug\AdobeSignNet.csprojResolveAssemblyReference.cache
