@@ -75,7 +75,7 @@ namespace AdobeSignNet
         {
             var errorString = await response.Content.ReadAsStringAsync();
             var errorCode = DeserializeJSon<AdobeSign.ErrorCode>(errorString);
-            return errorCode.code + System.Environment.NewLine + errorCode.message;
+            return errorCode.code + errorCode.error + System.Environment.NewLine + errorCode.message + errorCode.error_description;
         }
 
 

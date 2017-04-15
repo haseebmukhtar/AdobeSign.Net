@@ -40,6 +40,7 @@
     <Compile Include="AdobeSign\AccessToken.cs" />
     <Compile Include="AdobeSign\AdobeObject.cs" />
     <Compile Include="AdobeSign\Agreement.cs" />
+    <Compile Include="AdobeSign\AuthorizationScope.cs" />
     <Compile Include="AdobeSign\BaseUriInfo.cs" />
     <Compile Include="AdobeSign\Documents.cs" />
     <Compile Include="AdobeSign\Enums.cs" />

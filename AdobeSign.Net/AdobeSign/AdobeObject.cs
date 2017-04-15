@@ -72,16 +72,24 @@ namespace AdobeSignNet
             return API.DeserializeJSon<AdobeSign.TransientDocumentResponse>(json);
                         
         }
-        
+
 
         #endregion Agreements
 
 
         #region STATIC METHODS
 
-
-        public static async Task<AdobeSign.AccessToken> GetAccessToken(string apiURL, string authorization_code, string clientid, string client_secret, string redirectURL, string grant_type = "authorization_code")
-        {
+        /// <summary>
+        /// Get the access token using authorization code
+        /// </summary>
+        /// <param name="apiURL">API Uri</param>
+        /// <param name="authorization_code">Authorization Code - the authorization code obtained in Authorization Request process</param>
+        /// <param name="clientid">Application ID - obtained from OAuth Configuration page / Identifies the application</param>
+        /// <param name="client_secret">Client secret key - obtained from OAuth Configuration page / Authenticates the application</param>
+        /// <param name="redirectURL">Redirect URL - must match the value used during the Authorization Code step / This value must belong to the set of values specified on the OAuth Configuration page</param>        
+        /// <returns>AccessToken object</returns>
+        public static async Task<AdobeSign.AccessToken> GetAccessToken(string apiURL, string authorization_code, string clientid, string client_secret, string redirectURL)
+        {            
             RestAPI API = new RestAPI(apiURL, "");
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -89,11 +97,36 @@ namespace AdobeSignNet
             parameters.Add("client_id", clientid);
             parameters.Add("client_secret", client_secret);
             parameters.Add("redirect_uri", redirectURL);
-            parameters.Add("grant_type", grant_type);
+            parameters.Add("grant_type", "authorization_code");
 
             FormUrlEncodedContent encodedContent = new FormUrlEncodedContent(parameters);           
 
             string json = await API.PostRest("/oauth/token", encodedContent, "application/x-www-form-urlencoded");
+            return API.DeserializeJSon<AdobeSign.AccessToken>(json);
+        }
+
+
+        /// <summary>
+        /// Get Access Token using refresh token
+        /// </summary>
+        /// <param name="apiURL">API Uri</param>
+        /// <param name="refresh_token">Refresh Token, which can be used to get a fresh Access Token</param>
+        /// <param name="clientid">Application ID - obtained from OAuth Configuration page / Identifies the application</param>
+        /// <param name="client_secret">Client secret key - obtained from OAuth Configuration page / Authenticates the application</param>
+        /// <returns>AccessToken object - Refresh_token property would be null on this call.</returns>
+        public static async Task<AdobeSign.AccessToken> GetAccessTokenByRefreshToken(string apiURL, string refresh_token, string clientid, string client_secret)
+        {            
+            RestAPI API = new RestAPI(apiURL, "");
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("refresh_token", refresh_token);
+            parameters.Add("client_id", clientid);
+            parameters.Add("client_secret", client_secret);
+            parameters.Add("grant_type", "refresh_token");
+
+            FormUrlEncodedContent encodedContent = new FormUrlEncodedContent(parameters);
+
+            string json = await API.PostRest("/oauth/refresh", encodedContent, "application/x-www-form-urlencoded");
             return API.DeserializeJSon<AdobeSign.AccessToken>(json);
         }
 
