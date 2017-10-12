@@ -32,6 +32,12 @@ namespace AdobeSignNet
 
         public async Task<AdobeSign.AgreementInfo> GetAgreement(string agreementID)
         {
+            //On null or empty agreement id, API is returning all agreements.
+            if(string.IsNullOrWhiteSpace(agreementID))
+            {
+                return null;
+            }
+
             var endpoint = string.Format("/agreements/{0}", agreementID);
             string json = await API.GetRestJson(endpoint);
             return API.DeserializeJSon<AdobeSign.AgreementInfo>(json);
@@ -56,21 +62,29 @@ namespace AdobeSignNet
             
         }
 
-        public async Task<AdobeSign.TransientDocumentResponse> AddDocument(string fileName, byte[] fileData)
+        public async Task<AdobeSign.TransientDocumentResponse> AddDocument(string fileName, byte[] fileData, string mimeType = "")
         {
             var content = new MultipartFormDataContent();
-            HttpContent fileContent = new ByteArrayContent(fileData);            
+            HttpContent fileContent = new ByteArrayContent(fileData);
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
                 Name = "File",
                 FileName = fileName
-            };
 
+            };
             content.Add(fileContent);
 
-            string json = await API.PostRest("/transientDocuments", content);            
+            content.Add(new StringContent(fileName), String.Format("\"{0}\"", "File-Name"));
+
+
+            if (!string.IsNullOrWhiteSpace(mimeType))
+            {
+                content.Add(new StringContent(mimeType), String.Format("\"{0}\"", "Mime-Type"));
+            }
+
+            string json = await API.PostRest("/transientDocuments", content);
             return API.DeserializeJSon<AdobeSign.TransientDocumentResponse>(json);
-                        
+
         }
 
 

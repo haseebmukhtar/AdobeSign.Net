@@ -339,36 +339,58 @@ namespace AdobeSignNet.AdobeSign
     [DataContract]
     public class FileUploadOptions
     {
+        [DataMember(EmitDefaultValue = false)]
         public bool libraryDocument { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public bool localFile { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public bool webConnectors { get; set; }
     }
 
     [DataContract]
     public class SendThroughWebOptions
     {
+        [DataMember(EmitDefaultValue = false)]
         public FileUploadOptions fileUploadOptions { get; set; }
     }
 
     [DataContract]
     public class Options
     {
+        [DataMember(EmitDefaultValue = false)]
         public bool authoringRequested { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public bool autoLoginUser { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public string locale { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public bool noChrome { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public bool sendThroughWeb { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public SendThroughWebOptions sendThroughWebOptions { get; set; }
     }
 
     [DataContract]
     public class AgreementCreationResponse
     {
+        [DataMember(EmitDefaultValue = false)]
         public string agreementId { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public string embeddedCode { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
         public string expiration { get; set; }
 
+        [DataMember(EmitDefaultValue = false)]
         public string url { get; set; }
 
     }
