@@ -66,6 +66,7 @@ namespace AdobeSignNet
         {
             var content = new MultipartFormDataContent();
             HttpContent fileContent = new ByteArrayContent(fileData);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
             fileContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
             {
                 Name = "File",
